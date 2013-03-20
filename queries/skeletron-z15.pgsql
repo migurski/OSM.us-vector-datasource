@@ -14,6 +14,6 @@ SELECT
           WHEN highway LIKE '%_link' THEN 5
           ELSE 9 END) AS sort_key
 
-FROM streets_02_28_altogether
+FROM streets_skeletron
 
 WHERE zoomlevel = 15
