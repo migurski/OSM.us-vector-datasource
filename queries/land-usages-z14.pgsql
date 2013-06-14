@@ -1,7 +1,13 @@
 SELECT name,
        Area(way) AS area,
        COALESCE("landuse", "leisure", "natural", "highway", "amenity") AS kind,
-       way AS geometry
+       way AS geometry,
+    
+       --
+       -- Negative osm_id is synthetic, with possibly multiple geometry rows.
+       --
+       (CASE WHEN osm_id < 0 THEN Substr(MD5(ST_AsBinary(way)), 1, 10)
+             ELSE osm_id::varchar END) AS __id__
 
 FROM planet_osm_polygon
 

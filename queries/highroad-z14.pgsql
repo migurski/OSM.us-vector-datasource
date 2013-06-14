@@ -16,6 +16,12 @@ SELECT
     (CASE WHEN bridge IN ('yes', 'true') THEN 'yes'
           ELSE 'no' END) AS is_bridge,
 
+    --
+    -- Negative osm_id is synthetic, with possibly multiple geometry rows.
+    --
+    (CASE WHEN osm_id < 0 THEN Substr(MD5(ST_AsBinary(way)), 1, 10)
+          ELSE osm_id::varchar END) AS __id__,
+
     (
         --
         -- Highways are separated from other roads and drawn on top.

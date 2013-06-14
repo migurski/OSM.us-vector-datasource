@@ -1,6 +1,7 @@
 SELECT name,
        COALESCE("aeroway", "natural") AS kind,
-       way AS geometry
+       way AS geometry,
+       osm_id AS __id__
 
 FROM planet_osm_point
 
