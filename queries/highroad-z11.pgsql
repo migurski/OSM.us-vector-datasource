@@ -1,5 +1,5 @@
 SELECT
-    way AS geometry,
+    way AS __geometry__,
     highway,
     railway,
 

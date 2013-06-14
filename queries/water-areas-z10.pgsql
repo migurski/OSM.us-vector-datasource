@@ -1,4 +1,4 @@
-SELECT name, area, kind, geometry, __id__
+SELECT name, area, kind, __geometry__, __id__
 
 FROM
 (
@@ -8,7 +8,7 @@ FROM
     SELECT '' AS name,
            Area(the_geom) AS area,
            'ocean' AS kind,
-           the_geom AS geometry,
+           the_geom AS __geometry__,
            gid::varchar AS __id__
     
     FROM water_polygons
@@ -23,7 +23,7 @@ FROM
     SELECT name,
            Area(way) AS area,
            COALESCE("waterway", "natural", "landuse") AS kind,
-           way AS geometry,
+           way AS __geometry__,
         
            --
            -- Negative osm_id is synthetic, with possibly multiple geometry rows.

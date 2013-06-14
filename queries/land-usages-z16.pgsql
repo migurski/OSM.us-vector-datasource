@@ -1,7 +1,7 @@
 SELECT name,
        Area(way) AS area,
        COALESCE("landuse", "leisure", "natural", "highway", "amenity") AS kind,
-       way AS geometry,
+       way AS __geometry__,
     
        --
        -- Negative osm_id is synthetic, with possibly multiple geometry rows.
