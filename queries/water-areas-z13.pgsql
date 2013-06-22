@@ -1,4 +1,4 @@
-SELECT name, area, kind, __geometry__, __id__
+SELECT name, area, kind, source, __geometry__, __id__
 
 FROM
 (
@@ -8,6 +8,7 @@ FROM
     SELECT '' AS name,
            Area(the_geom) AS area,
            'ocean' AS kind,
+           'openstreetmapdata.com' AS source,
            the_geom AS __geometry__,
            gid::varchar AS __id__
     
@@ -23,6 +24,7 @@ FROM
     SELECT name,
            Area(way) AS area,
            COALESCE("waterway", "natural", "landuse") AS kind,
+           'openstreetmap.org' AS source,
            way AS __geometry__,
         
            --
