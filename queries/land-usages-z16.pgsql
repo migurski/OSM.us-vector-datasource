@@ -1,5 +1,5 @@
 SELECT name,
-       Area(way) AS area,
+       Area(way)::bigint AS area,
        COALESCE("landuse", "leisure", "natural", "highway", "amenity") AS kind,
        way AS __geometry__,
     

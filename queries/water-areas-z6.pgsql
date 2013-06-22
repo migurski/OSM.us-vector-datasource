@@ -6,7 +6,7 @@ FROM
     -- Ocean
     --
     SELECT '' AS name,
-           Area(the_geom) AS area,
+           Area(the_geom)::bigint AS area,
            'ocean' AS kind,
            'naturalearthdata.com' AS source,
            ST_Intersection(the_geom, !bbox!) AS __geometry__
@@ -21,7 +21,7 @@ FROM
     UNION
 
     SELECT name,
-           Area(the_geom) AS area,
+           Area(the_geom)::bigint AS area,
            'lake' AS kind,
            'naturalearthdata.com' AS source,
            ST_Intersection(the_geom, !bbox!) AS __geometry__
@@ -36,7 +36,7 @@ FROM
     UNION
 
     SELECT name,
-           Area(the_geom) AS area,
+           Area(the_geom)::bigint AS area,
            'playa' AS kind,
            'naturalearthdata.com' AS source,
            ST_Intersection(the_geom, !bbox!) AS __geometry__

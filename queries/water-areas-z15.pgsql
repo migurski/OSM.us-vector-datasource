@@ -6,7 +6,7 @@ FROM
     -- Ocean
     --
     SELECT '' AS name,
-           Area(the_geom) AS area,
+           Area(the_geom)::bigint AS area,
            'ocean' AS kind,
            'openstreetmapdata.com' AS source,
            the_geom AS __geometry__,
@@ -22,7 +22,7 @@ FROM
     UNION
 
     SELECT name,
-           Area(way) AS area,
+           Area(way)::bigint AS area,
            COALESCE("waterway", "natural", "landuse") AS kind,
            'openstreetmap.org' AS source,
            way AS __geometry__,
