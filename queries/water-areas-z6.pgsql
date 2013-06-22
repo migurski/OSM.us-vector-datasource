@@ -6,14 +6,14 @@ FROM
     -- Ocean
     --
     SELECT '' AS name,
-           Area(geom) AS area,
+           Area(the_geom) AS area,
            'ocean' AS kind,
            'naturalearthdata.com' AS source,
-           ST_Intersection(geom, !bbox!) AS __geometry__
+           ST_Intersection(the_geom, !bbox!) AS __geometry__
     
     FROM ne_10m_ocean
     
-    WHERE geom && !bbox!
+    WHERE the_geom && !bbox!
     
     --
     -- Lakes
@@ -21,14 +21,14 @@ FROM
     UNION
 
     SELECT name,
-           Area(geom) AS area,
+           Area(the_geom) AS area,
            'lake' AS kind,
            'naturalearthdata.com' AS source,
-           ST_Intersection(geom, !bbox!) AS __geometry__
+           ST_Intersection(the_geom, !bbox!) AS __geometry__
     
     FROM ne_10m_lakes
     
-    WHERE geom && !bbox!
+    WHERE the_geom && !bbox!
     
     --
     -- Playas
@@ -36,13 +36,13 @@ FROM
     UNION
 
     SELECT name,
-           Area(geom) AS area,
+           Area(the_geom) AS area,
            'playa' AS kind,
            'naturalearthdata.com' AS source,
-           ST_Intersection(geom, !bbox!) AS __geometry__
+           ST_Intersection(the_geom, !bbox!) AS __geometry__
     
     FROM ne_10m_playas
     
-    WHERE geom && !bbox!
+    WHERE the_geom && !bbox!
 
 ) AS water_areas
