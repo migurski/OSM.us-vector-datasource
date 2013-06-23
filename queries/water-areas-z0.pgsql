@@ -9,7 +9,7 @@ FROM
            Area(the_geom)::bigint AS area,
            'ocean' AS kind,
            'naturalearthdata.com' AS source,
-           ST_Intersection(the_geom, !bbox!) AS __geometry__
+           the_geom AS __geometry__
     
     FROM ne_110m_ocean
     
@@ -24,7 +24,7 @@ FROM
            Area(the_geom)::bigint AS area,
            'lake' AS kind,
            'naturalearthdata.com' AS source,
-           ST_Intersection(the_geom, !bbox!) AS __geometry__
+           the_geom AS __geometry__
     
     FROM ne_110m_lakes
     
